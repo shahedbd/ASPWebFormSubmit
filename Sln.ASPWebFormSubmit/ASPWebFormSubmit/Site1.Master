@@ -1,20 +1,181 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="ASPWebFormSubmit.Site1" %>
 
+<%@ Register Src="~/sidebar.ascx" TagPrefix="uc1" TagName="sidebar" %>
+
 <!DOCTYPE html>
 
 <html>
 <head runat="server">
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
+    <meta charset="utf-8" />
+	<title></title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+
+    <%--<link href="Scripts/CSS/bootstrap.min.css" rel="stylesheet" />
+    <link href="Scripts/CSS/metro.css" rel="stylesheet" />
+    <link href="Scripts/CSS/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="Scripts/CSS/font-awesome.min.css" rel="stylesheet" />
+    <link href="Scripts/CSS/bootstrap-fullcalendar.css" rel="stylesheet" />
+    <link href="Scripts/CSS/style.css" rel="stylesheet" />
+    <link href="Scripts/CSS/style_responsive.css" rel="stylesheet" />
+    <link href="Scripts/CSS/style_default.css" rel="stylesheet" />
+    <link href="Scripts/CSS/daterangepicker.css" rel="stylesheet" />
+    <link href="Scripts/CSS/uniform.default.css" rel="stylesheet" />
+    <link href="Scripts/CSS/chosen.css" rel="stylesheet" />
+    <link href="Scripts/CSS/datepicker.css" rel="stylesheet" />
+    <link href="Scripts/CSS/daterangepicker.css" rel="stylesheet" />
+    <link href="Scripts/CSS/jquery.fancybox.css" rel="stylesheet" />
+    <link href="Scripts/CSS/clockface.css" rel="stylesheet" />--%>
+
+
+    <link href="/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/assets/css/metro.css" rel="stylesheet" />
+	<link href="/assets/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+	<link href="/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	<link href="/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+	<link href="/assets/css/style.css" rel="stylesheet" />
+	<link href="/assets/css/style_responsive.css" rel="stylesheet" />
+	<link href="/assets/css/style_default.css" rel="stylesheet" id="style_color" />
+	<link rel="stylesheet" type="text/css" href="/assets/chosen-bootstrap/chosen/chosen.css" />
+	<link rel="stylesheet" type="text/css" href="/assets/uniform/css/uniform.default.css" />
+	<link href="/assets/dropzone/css/dropzone.css" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" href="assets/bootstrap-datepicker/css/datepicker.css" />    <link rel="stylesheet" type="text/css" href="assets/bootstrap-daterangepicker/daterangepicker.css" />
+
+
+	<link rel="shortcut icon" href="favicon.ico" />
+    <asp:ContentPlaceHolder ID="pghead" runat="server">
     </asp:ContentPlaceHolder>
+
 </head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-        
-        </asp:ContentPlaceHolder>
+
+
+<body class="fixed-top">
+    <div class="header navbar navbar-inverse navbar-fixed-top" runat="server" id="top_nav">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="brand" href="index.html">
+                    <img src="/Assets/Images/logo.png" alt="logo">
+                </a>
+                <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                    <img src="/Assets/Images/menu-toggler.png" alt="" />
+                </a>
+                <ul class="nav pull-right">
+                    <li class="dropdown" id="header_inbox_bar">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="icon-envelope-alt"></i>
+                            <span class="badge">0</span>
+                        </a>
+
+                    </li>
+                    <li class="dropdown user">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <img alt="" src="/Assets/Images/avatar2.jpg" />
+                            <span class="username"></span>
+                            <i class="icon-angle-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="/default.aspx"><i class="icon-key"></i>Log Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-    </form>
+
+
+    <div class="page-container row-fluid">
+        <div class="page-sidebar nav-collapse collapse" runat="server" id="side_nav">
+            <uc1:sidebar runat="server" id="sidebar" />
+        </div>
+
+        <div class="page-content">
+            <div id="portlet-config" class="modal hide">
+                <div class="modal-header">
+                    <button data-dismiss="modal" class="close" type="button"></button>
+                    <h3>portlet Settings</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Here will be a configuration form</p>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="span12">
+                        <asp:ContentPlaceHolder ID="pgBreadCrum" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <asp:ContentPlaceHolder ID="pgContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="footer">
+        2017 &copy; 
+	    <div class="span pull-right">
+            <span class="go-top"><i class="icon-angle-up"></i></span>
+        </div>
+    </div>
+
+
+    <%--Load javascripts at bottom, this will reduce page load time--%>
+    
+    <%--<script src="Scripts/JS/jquery-1.8.3.min.js"></script>
+    <script src="Scripts/JS/bootstrap.min.js"></script>
+    <script src="Scripts/JS/bootstrap-datepicker.js"></script>
+    <script src="Scripts/JS/breakpoints.js"></script>
+    <script src="Scripts/JS/chosen.jquery.min.js"></script>
+    <script src="Scripts/JS/clockface.js"></script>
+    <script src="Scripts/JS/date.js"></script>
+    <script src="Scripts/JS/daterangepicker.js"></script>
+    <script src="Scripts/JS/dropzone.js"></script>
+    <script src="Scripts/JS/fullcalendar.min.js"></script>
+    <script src="Scripts/JS/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="Scripts/JS/jquery.blockui.js"></script>
+    <script src="Scripts/JS/jquery.cookie.js"></script>
+    <script src="Scripts/JS/jquery.fancybox.js"></script>
+    <script src="Scripts/JS/jquery.uniform.js"></script>--%>
+
+    <script src="/assets/js/jquery-1.8.3.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>		
+	
+    <script src="/assets/breakpoints/breakpoints.js"></script>			
+	<script src="/assets/jquery-slimscroll/jquery-ui-1.9.2.custom.min.js"></script>	
+	<script src="/assets/js/jquery.blockui.js"></script>
+	<script src="/assets/js/jquery.cookie.js"></script>
+	<script src="/assets/dropzone/dropzone.js"></script>
+
+	<script src="/assets/fullcalendar/fullcalendar/fullcalendar.min.js"></script>	
+	<script type="text/javascript" src="/assets/uniform/jquery.uniform.min.js"></script>
+	<script type="text/javascript" src="/assets/chosen-bootstrap/chosen/chosen.jquery.min.js"></script>
+    
+    <link href="/assets/clockface/css/clockface.css" rel="stylesheet" />
+    <link href="/assets/fancybox/source/jquery.fancybox.css" rel="stylesheet" />
+
+    <script src="/assets/fancybox/source/jquery.fancybox.js"></script>  
+    <script type="text/javascript" src="/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/assets/clockface/js/clockface.js"></script>
+    <script type="text/javascript" src="/assets/bootstrap-daterangepicker/date.js"></script>
+    <script type="text/javascript" src="/assets/bootstrap-daterangepicker/daterangepicker.js"></script> 
+    
+    
+    
+    <script src="Scripts/JS/app.js"></script>
+    <asp:ContentPlaceHolder ID="pgScripts" runat="server">
+    </asp:ContentPlaceHolder>
 </body>
+
+
+
+
 </html>

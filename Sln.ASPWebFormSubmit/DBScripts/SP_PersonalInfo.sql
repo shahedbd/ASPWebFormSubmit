@@ -1,12 +1,13 @@
 USE [DevTemp]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_personalinfo]    Script Date: 10/23/2017 3:23:29 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_personalinfo]    Script Date: 10/23/2017 1:25:32 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-CREATE PROC [dbo].[sp_personalinfo] (@ID bigint = NULL,
+ALTER PROC [dbo].[sp_personalinfo] (
+@PersonalInfoID bigint = NULL,
 @FirstName nchar(100) = NULL,
 @LastName nchar(100) = NULL,
 @DateOfBirth datetime = NULL,
@@ -23,25 +24,27 @@ AS
   --Save personalinfo
   IF (@pOptions = 1)
   BEGIN
-    INSERT INTO personalinfo (ID,
-    FirstName,
-    LastName,
-    DateOfBirth,
-    City,
-    Country,
-    MobileNo,
-    NID,
-    Email,
-    Status)
-      VALUES (@ID, @FirstName, @LastName, @DateOfBirth, @City, @Country, @MobileNo, @NID, @Email, @Status)
-    IF @@ROWCOUNT = 0
+
+	IF @PersonalInfoID IS NOT NULL
+	BEGIN
+		DELETE FROM dbo.personalinfo WHERE PersonalInfoID=@PersonalInfoID	
+	END
+
+	IF @FirstName IS NOT NULL
     BEGIN
-      SET @Msg = 'Warning: No rows were Inserted';
-    END
-    ELSE
-    BEGIN
-      SET @Msg = 'Data Saved Successfully';
-    END
+		INSERT INTO dbo.personalinfo (FirstName,LastName,DateOfBirth,City,Country,MobileNo,NID,Email,Status)
+		VALUES (@FirstName, @LastName, @DateOfBirth, @City, @Country, @MobileNo, @NID, @Email, 1)   
+		IF @@ROWCOUNT = 0
+		BEGIN
+		  SET @Msg = 'Warning: No rows were Inserted';
+		END
+		ELSE
+		BEGIN
+		  SET @Msg = 'Data Saved Successfully';
+		END
+	END
+
+	SELECT * FROM dbo.personalinfo 
   END
   --End of Save personalinfo
 
@@ -58,7 +61,7 @@ AS
         MobileNo = @MobileNo,
         NID = @NID,
         Email = @Email,
-        Status = @Status WHERE ID = @ID;
+        Status = @Status WHERE PersonalInfoID = @PersonalInfoID;
 
     IF @@ROWCOUNT = 0
     BEGIN
@@ -76,7 +79,7 @@ AS
   --Delete personalinfo
   IF (@pOptions = 3)
   BEGIN
-    DELETE FROM personalinfo WHERE ID = @ID;
+    DELETE FROM personalinfo WHERE PersonalInfoID = @PersonalInfoID;
     SET @Msg = 'Data Deleted Successfully';
   END
   --End of Delete personalinfo 
@@ -95,10 +98,11 @@ AS
   --Select personalinfo By ID 
   IF (@pOptions = 5)
   BEGIN
-    SELECT * FROM personalinfo WHERE ID = @ID;
+    SELECT * FROM personalinfo WHERE PersonalInfoID = @PersonalInfoID;
     IF (@@ROWCOUNT = 0)
       SET @Msg = 'Data Not Found';
   END
 --End of Select personalinfo By ID 
+
 
 

@@ -1,7 +1,7 @@
 USE [DevTemp]
 GO
 
-/****** Object:  Table [dbo].[PersonalInfo]    Script Date: 10/23/2017 3:22:18 AM ******/
+/****** Object:  Table [dbo].[PersonalInfo]    Script Date: 10/23/2017 4:33:42 PM ******/
 SET ANSI_NULLS ON
 GO
 
@@ -9,7 +9,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 CREATE TABLE [dbo].[PersonalInfo](
-	[ID] [bigint] IDENTITY(1,1) NOT NULL,
+	[PersonalInfoID] [bigint] IDENTITY(1,1) NOT NULL,
 	[FirstName] [nchar](100) NULL,
 	[LastName] [nchar](100) NULL,
 	[DateOfBirth] [datetime] NULL,
@@ -21,7 +21,7 @@ CREATE TABLE [dbo].[PersonalInfo](
 	[Status] [tinyint] NULL,
  CONSTRAINT [PK_PersonalInfo] PRIMARY KEY CLUSTERED 
 (
-	[ID] ASC
+	[PersonalInfoID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 

@@ -11,5 +11,32 @@ namespace ASPWebFormSubmit.UI {
     
     
     public partial class PersonalInfoView {
+        
+        /// <summary>
+        /// vrMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl vrMsg;
+        
+        /// <summary>
+        /// vrMsgAlert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl vrMsgAlert;
+        
+        /// <summary>
+        /// RepPersonalInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater RepPersonalInfo;
     }
 }

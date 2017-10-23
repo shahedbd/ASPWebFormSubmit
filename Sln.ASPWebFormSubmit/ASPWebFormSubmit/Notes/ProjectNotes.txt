@@ -7,3 +7,9 @@ Install-Package jQuery.UI.Combined -Version 1.12.1
 
 Install-Package bootstrap -Version 3.3.7
 
+
+
+SQL:
+truncate table PersonalInfo
+
+
